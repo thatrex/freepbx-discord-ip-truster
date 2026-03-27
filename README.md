@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Place `main.py` in `/opt/freepbx-discord-ip-truster` directory.
+1. Place `main.py` in `/opt/freepbx-discord-ip-truster`.
 2. Install dependencies:
 
     ```bash
