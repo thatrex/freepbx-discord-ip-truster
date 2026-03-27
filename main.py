@@ -31,15 +31,15 @@ def is_valid_ipv4(ip: str) -> bool:
 @bot.tree.command(name="iptrust", description="Trust an IPv4 address")
 @app_commands.describe(ip="The IPv4 address to trust")
 async def iptrust(interaction: discord.Interaction, ip: str):
-    is_valid = is_valid_ipv4(ip)
     user = interaction.user
+    is_valid = is_valid_ipv4(ip)
 
     if is_valid:
         print(f"IP trusted by {user} ({user.id}): {ip}")
         os.system(f'fwconsole firewall trust {ip}')
         os.system(f'fail2ban-client unban {ip}')
         await interaction.response.send_message(
-            f"Successfully trusted **`{ip}`**.",
+            f"Successfully trusted (& unbanned) **`{ip}`**.",
             ephemeral=True
         )
     else:
@@ -52,8 +52,8 @@ async def iptrust(interaction: discord.Interaction, ip: str):
 @bot.tree.command(name="ipuntrust", description="Untrust an IPv4 address")
 @app_commands.describe(ip="The IPv4 address to untrust")
 async def ipuntrust(interaction: discord.Interaction, ip: str):
-    is_valid = is_valid_ipv4(ip)
     user = interaction.user
+    is_valid = is_valid_ipv4(ip)
 
     if is_valid:
         print(f"IP untrusted by {user} ({user.id}): {ip}")
